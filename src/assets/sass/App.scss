@@ -1,0 +1,19 @@
+.app {
+    width: 50%;
+    height: 25%;
+    box-shadow:3px 0 8px -4px #000;
+}
+
+.show {
+    display: flex;
+}
+
+.hide {
+    display: none;
+}
+
+@media (min-width: 30rem) and (max-width: 40rem) {
+   
+    html {font-size: 60%;  } 
+  }
+
