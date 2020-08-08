@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer } from 'react'
 import axios from 'axios'
+import PropTypes from 'prop-types'
 import Title from '../components/Title'
 import Foot from '../components/foot'
 import Content from '../components/content'
@@ -14,7 +15,7 @@ function App () {
         contentDispatch({ type: 'GET_IPAD_INFOS_SUCCESS', payload: res.data })
       })
       .catch(err => {
-        contentDispatch({ type: 'GET_IPAD_INFOS_FAILED' })
+        contentDispatch({ type: 'GET_IPAD_INFOS_FAILED',  err})
       })
   }, [])
 
@@ -29,6 +30,10 @@ function App () {
       </ContentContext.Provider>
     </div>
   )
+}
+
+App.PropTypes = {
+  contentToggle: PropTypes.bool.isRequired
 }
 
 export const ContentContext = React.createContext()

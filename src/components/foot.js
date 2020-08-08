@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
+import PropTypes from 'prop-types'
 import { ContentContext } from '../containers/App'
 import '../assets/sass/foot.scss'
 
 function Foot () {
   const contentContext = useContext(ContentContext)
-  const currentPageIndex = contentContext.contentState.currentIndex
+  const currentPageIndex = contentContext?.contentState?.currentIndex
   const contentDetails = contentContext?.contentState?.ipadInfos?.content
 
 /* turn page over by click direction btn/send dispatch to change state
@@ -19,7 +20,8 @@ function Foot () {
         contentContext.contentDispatch({ type: 'LEFT_CLICK' })
       }
     } else if (direction === 'right') {
-      if (contentDetails && currentPageIndex === (contentDetails && contentDetails.length - 1)) {
+      if (contentDetails && currentPageIndex === (contentDetails && 
+          contentDetails.length - 1)) {
       } else {
         contentContext.contentDispatch({ type: 'RIGHT_CLICK' })
       }
@@ -34,22 +36,24 @@ function Foot () {
           {
             (currentPageIndex === 0)
               ? 'Prev'
-              : contentDetails[currentPageIndex - 1].title
+              : contentDetails?.[currentPageIndex - 1].title
           }
         </a>
       </div>
       <div className='foot'>
-        <a href='#' onClick={() => pageChange('right')}>
-          {
-            (contentDetails && currentPageIndex === (contentDetails && contentDetails.length - 1))
-              ? 'Next'
-              : contentDetails && contentDetails[currentPageIndex + 1].title
-          }
+        <a href='#' onClick={() => pageChange('right')}>{(contentDetails && currentPageIndex === (contentDetails && 
+        contentDetails.length - 1))? 'Next': contentDetails && contentDetails[currentPageIndex + 1].title
+        }
         </a>
         <button onClick={() => pageChange('right')} className='rightarrow'></button>
       </div>
     </div>
   )
+}
+
+Foot.PropTypes = {
+  ipadInfos: PropTypes.object.isRequired,
+  currentIndex: PropTypes.number.isRequired
 }
 
 export default Foot

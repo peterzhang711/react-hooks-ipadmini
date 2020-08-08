@@ -13,7 +13,7 @@ export const defaultContentState = {
     currentIndex: 0
   }
 
-export const contentReducer = (state, action) => {
+export const contentReducer = (state = defaultContentState, action) => {
     switch (action.type) {
       case GET_IPAD_INFOS_SUCCESS:
         return {
